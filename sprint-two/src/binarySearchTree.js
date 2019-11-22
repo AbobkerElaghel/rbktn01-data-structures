@@ -1,4 +1,12 @@
 var BinarySearchTree = function(value) {
+	var obj = {};
+	var right;
+	var left;
+	var value;
+	obj.right;
+	obj.left;
+	obj.value;
+
 };
 
 
