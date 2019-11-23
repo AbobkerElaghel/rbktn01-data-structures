@@ -1,4 +1,3 @@
-
  var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
@@ -13,39 +12,34 @@
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-	var newNode = new Tree(value);
-  this.children.push(newNode);
+    this.children.push(new Tree(value));
 };
 
 treeMethods.contains = function(target) {
-	for (var element in this.children) {
-		console.log(element);
-		if(this.children[element].value === target) {
-			return true;
-		}else{
-			return this.children[element].contains(target);
-		}
+	if(this.value === target)
+		return true;
+    return innerSearch (target,this.children)
+
 }
+var innerSearch = function(target, child){
+  var found = found || false;
+  for (var i in child) {
+  	if(child[i].value  === target){
+  		return found = true;
+  	}
+  	else{
+  	found = innerSearch(target,child[i].children) || found;
+  	}
+  }
+return found;
+
 };	
 
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addChild (1)
+ * contains (1)
+ * innerSearch (N)
  */
-
-
-
-// 	if (this.children.length - 1 !== 0) {
-// 	for (var i in this.children) {
-// 		if (i.value === target) {
-// 			return true;
-// 		}
-// 		if (i.children.contains(target)) {
-// 			return true;
-// 		}
-// 	}
-// }
-// if (this.children.length - 1 === 0) {
-// 	return false;
-// }
