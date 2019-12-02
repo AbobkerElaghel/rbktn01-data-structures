@@ -9,31 +9,37 @@
   return newTree;
 };
 
-var treeMethods = {};
+var treeMethods = {
+};
 
 treeMethods.addChild = function(value) {
     this.children.push(new Tree(value));
 };
 
-treeMethods.contains = function(target) {
-	if(this.value === target)
+treeMethods.contains = function(target, currentNode, flag) {
+    currentNode = currentNode || this;
+   flag = flag || false ;
+	if (currentNode.value === target) {
 		return true;
-    return innerSearch (target,this.children)
+	}
 
+	for (var i = 0; i <  currentNode.children.length; i++) {
+	       if(flag)
+	       return true;
+	   
+		  flag = currentNode.contains( target, currentNode.children[i],flag);
+	}
+return flag;
 }
-var innerSearch = function(target, child){
-  var found = found || false;
-  for (var i in child) {
-  	if(child[i].value  === target){
-  		return found = true;
-  	}
-  	else{
-  	found = innerSearch(target,child[i].children) || found;
-  	}
-  }
-return found;
 
-};	
+
+var tree = Tree(1);
+
+tree.addChild(2);
+tree.children[0].addChild(7);
+tree.addChild(9);
+
+
 
 
 
