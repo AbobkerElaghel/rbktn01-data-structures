@@ -40,10 +40,7 @@ Graph.prototype.removeNode = function(node) {
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
- if(this.vertices[fromNode].edges[toNode] && this.vertices[toNode].edges[fromNode]){
-		return true;
-	}
-	return false;
+ return this.vertices[fromNode].edges[toNode] && this.vertices[toNode].edges[fromNode];
 };
 
 // Connects two nodes in a graph by adding an edge between them.
